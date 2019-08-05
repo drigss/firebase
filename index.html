@@ -69,17 +69,13 @@
 
         var tblUsers = document.getElementById('tbl_users_list');
         var databaseRef = firebase.database().ref('users');
-
-        var a = document.getElementById("user_name").value;
-  
+ 
         var x = document.getElementById('user_id').value;
-
-
 
         function salvar_dados() {
             var uid = firebase.database().ref().child('users').push().key;
             var a = document.getElementById("user_name").value;
-            
+
             var data = {
                 user_id: uid,
                 user_name: a
