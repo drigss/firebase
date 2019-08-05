@@ -1,0 +1,109 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAe8k7LpusvB0f0Do5Os_WDxo2FGpe7qlk",
+            authDomain: "projetoteste-31918.firebaseapp.com",
+            databaseURL: "https://projetoteste-31918.firebaseio.com",
+            projectId: "projetoteste-31918",
+            storageBucket: "projetoteste-31918.appspot.com",
+            messagingSenderId: "296458544575",
+            appId: "1:296458544575:web:e23ec5d0291015c0"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+    </script>
+
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <td><label for="formGroupExampleInput">ID</label></td>
+            <td> <input type="text" class="form-control" id="user_id" placeholder="ID"></td>
+        </tr>
+        <tr>
+            <td><label for="formGroupExampleInput">User Name</label></td>
+            <td> <input type="text" class="form-control" name="user_name" id="user_name" placeholder="Nome"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="button" class="btn btn-primary" value="Salvar" onclick="salvar_dados()">
+                <input type="button" class="btn btn-info" value="Editar" onclick="editar_dados()">
+                <input type="button" class="btn btn-danger" value="Excluir" onclick="excluir_dados()">
+            </td>
+        </tr>
+    </table>
+
+    <h3>User Lista</h3>
+
+    <table id="tbl_users_list">
+        <tr>
+            <td>#ID</td>
+            <td>Name</td>
+        </tr>
+    </table>
+
+
+
+    <script>
+
+        var tblUsers = document.getElementById('tbl_users_list');
+        var databaseRef = firebase.database().ref('users');
+
+        var a = document.getElementById("user_name").value;
+  
+        var x = document.getElementById('user_id').value;
+
+
+
+        function salvar_dados() {
+            var uid = firebase.database().ref().child('users').push().key;
+            var a = document.getElementById("user_name").value;
+            
+            var data = {
+                user_id: uid,
+                user_name: a
+            }
+            var updates = {}
+            updates['users' + uid] = data;
+            firebase.database().ref().update(updates);
+
+            alert('Salvo' + a);
+        }
+
+
+function editar_dados(){
+    var a = document.getElementById("user_name").value;
+    console.log(a);
+}
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

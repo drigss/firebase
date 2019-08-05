@@ -1,0 +1,19 @@
+body{
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div{
+    padding-bottom: 10px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.5;
+   }
